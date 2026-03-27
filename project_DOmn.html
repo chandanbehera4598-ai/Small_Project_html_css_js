@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#mainWrapper {
+  width: 100%;
+  height: 100%;
+}
+.sliderContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  background-color: black;
+}
+
+.slider {
+  width: 75%;
+  height: 85%;
+  border: solid;
+  border-radius: 50px;
+  background-color: skyblue;
+  transition: all 0.3s linear;
+}
+
+button {
+  border: solid;
+  padding: 3px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+    </style>
+  </head>
+  <body>
+    <div id="mainWrapper">
+      <div class="sliderContainer">
+        <button class="prev" title="prev">⏮️</button>
+        <div class="slider"></div>
+        <button class="next" title="next">⏭️</button>
+      </div>
+    </div>
+
+    <script>
+      let slider = document.querySelector(".slider");
+      let prev = document.querySelector(".prev");
+      let next = document.querySelector(".next");
+
+      let bgColor = ["image.png",];
+      let currentIndexValue = 0;
+
+      function prevFun() {
+        console.log(currentIndexValue);
+        currentIndexValue--;
+        console.log(currentIndexValue);
+
+        if (currentIndexValue < 0) {
+          currentIndexValue = bgColor.length - 1;
+        }
+        slider.style.backgroundColor = bgColor[currentIndexValue];
+      }
+      function nextFun() {
+        currentIndexValue++;
+        if (currentIndexValue > bgColor.length - 1) {
+          currentIndexValue = 0;
+        }
+
+        slider.style.backgroundColor = bgColor[currentIndexValue];
+      }
+
+      prev.addEventListener("click", prevFun);
+      next.addEventListener("click", nextFun);
+    </script>
+  </body>
+</html>
