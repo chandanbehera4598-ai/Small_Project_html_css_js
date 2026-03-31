@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .para {
+        color: red;
+        transition: all 0.3s linear;
+      }
+    </style>
+  </head>
+  <body>
+    <button>print Products titles</button>
+    <div class="container"></div>
+    <script>
+      let btn = document.querySelector("button");
+      let container = document.querySelector(".container");
+      let apiURL = "https://fakestoreapi.com/products";
+      async function fetchProducts(api) {
+        try {
+          let response = await fetch(api);
+          let data = await response.json();
+          console.log(data);
+          data.map((p) => {
+            let title = document.createElement("p");
+            title.innerHTML = p.title;
+            title.classList.add("para");
+            container.append(title);
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      btn.addEventListener("click", () => fetchProducts(apiURL));
+    </script>
+  </body>
+</html>
